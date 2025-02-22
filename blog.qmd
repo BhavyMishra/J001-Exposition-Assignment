@@ -1,8 +1,7 @@
 ---
-title: "Quarto Blog"
+title: "GeoViews"
 listing:
   contents: posts
   sort: "date desc"
   type: default
-  categories: true
 ---
