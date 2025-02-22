@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.41">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-02-14">
+
+<title>Assignment 3 – Python GeoViews</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-49927ad6ac989989b068a441603fbd97.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-7cfa380d139a4d61a924487b0af32b39.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Python GeoViews</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#spatial-aggreagations" id="toc-spatial-aggreagations" class="nav-link active" data-scroll-target="#spatial-aggreagations">Spatial Aggreagations</a></li>
+  <li><a href="#temporal-aggregation" id="toc-temporal-aggregation" class="nav-link" data-scroll-target="#temporal-aggregation">Temporal Aggregation</a></li>
+  <li><a href="#spatio-temporal-aggregation" id="toc-spatio-temporal-aggregation" class="nav-link" data-scroll-target="#spatio-temporal-aggregation">Spatio-temporal aggregation</a></li>
+  <li><a href="#population-based" id="toc-population-based" class="nav-link" data-scroll-target="#population-based">Population-Based</a></li>
+  <li><a href="#area-based" id="toc-area-based" class="nav-link" data-scroll-target="#area-based">Area Based</a></li>
+  <li><a href="#funding-based" id="toc-funding-based" class="nav-link" data-scroll-target="#funding-based">Funding Based</a></li>
+  <li><a href="#miscellaneous-questions" id="toc-miscellaneous-questions" class="nav-link" data-scroll-target="#miscellaneous-questions">Miscellaneous Questions</a></li>
+  <li><a href="#tell-us-something-new" id="toc-tell-us-something-new" class="nav-link" data-scroll-target="#tell-us-something-new">Tell us something new</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment 3</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Bhavy Mishra, Chirag Mahale, Parth Kale </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 14, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="cell-1" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>config InlineBackend.figure_format <span class="op">=</span> <span class="st">'retina'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="spatial-aggreagations" class="level1">
+<h1>Spatial Aggreagations</h1>
+<ol type="1">
+<li>Which state (consider all stations in that state) has the highest average PM2.5 concentration across all stations and across all years?</li>
+</ol>
+<div id="cell-4" class="cell" data-outputid="6e0b31f7-d90a-4bec-ad88-31004d62b7a0" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>grouped_data<span class="op">=</span>data.groupby(<span class="st">"state"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>max_data<span class="op">=</span>grouped_data.idxmax()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The state with the highest average PM2.5 concentration is '</span><span class="sc">{</span>max_data<span class="sc">}</span><span class="ss">' with average value as </span><span class="sc">{</span><span class="bu">round</span>(grouped_data[max_data],<span class="dv">2</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The state with the highest average PM2.5 concentration is 'Delhi' with average value as 104.1</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Which state (consider all stations in that state) had the most days with hazardous PM2.5 levels (above 300 µg/m³) for the year 2023?</li>
+</ol>
+<div id="cell-6" class="cell" data-outputid="3317ea99-729c-4001-d435-354abf58576e" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>]<span class="op">=</span>pd.to_datetime(data[<span class="st">"Timestamp"</span>],errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>data_2023<span class="op">=</span>data[data[<span class="st">"Timestamp"</span>].dt.year<span class="op">==</span><span class="dv">2023</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>data_2023<span class="op">=</span>data_2023.dropna(subset<span class="op">=</span>[<span class="st">"PM2.5"</span>])</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>hazardous_PM25<span class="op">=</span>data_2023[data_2023[<span class="st">"PM2.5"</span>]<span class="op">&gt;</span><span class="dv">300</span>].copy()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>hazardous_PM25.loc[:, <span class="st">"Date"</span>] <span class="op">=</span> hazardous_PM25[<span class="st">"Timestamp"</span>].dt.date</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>hazardous_days <span class="op">=</span> hazardous_PM25.groupby([<span class="st">"state"</span>, <span class="st">"Date"</span>]).size().reset_index(name<span class="op">=</span><span class="st">"count"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>state_hazardous_days<span class="op">=</span>hazardous_days.groupby(<span class="st">"state"</span>)[<span class="st">"count"</span>].<span class="bu">sum</span>()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>max_state<span class="op">=</span>state_hazardous_days.idxmax()</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The state with the most days with hazardous PM2.5 levels is '</span><span class="sc">{</span>max_state<span class="sc">}</span><span class="ss">' with </span><span class="sc">{</span>state_hazardous_days[max_state]<span class="sc">}</span><span class="ss"> days"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The state with the most days with hazardous PM2.5 levels is 'Delhi' with 470 days</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Which state has the highest variability in PM2.5 levels across its monitoring stations in 2023? (Think how would you measure variability)</li>
+</ol>
+<div id="cell-8" class="cell" data-outputid="bbde8fed-5e03-48b0-bda2-a8a858ec556c" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>]<span class="op">=</span>pd.to_datetime(data[<span class="st">"Timestamp"</span>],errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>data_2023<span class="op">=</span>data[data[<span class="st">"Timestamp"</span>].dt.year<span class="op">==</span><span class="dv">2023</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>data_2023<span class="op">=</span>data_2023.dropna(subset<span class="op">=</span>[<span class="st">"PM2.5"</span>])</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>grouped_data_2023<span class="op">=</span>data_2023.groupby(<span class="st">"state"</span>)[<span class="st">"PM2.5"</span>].std()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>max_variability<span class="op">=</span>grouped_data_2023.idxmax()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The state with the highest variability in PM2.5 levels across its monitoring stations in 2023 was '</span><span class="sc">{</span>max_variability<span class="sc">}</span><span class="ss">'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The state with the highest variability in PM2.5 levels across its monitoring stations in 2023 was 'Delhi'</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Which state has the lowest average PM2.5 levels during the Covid period (The year 2020-2021 both years inclusive)?</li>
+</ol>
+<div id="cell-10" class="cell" data-outputid="f09ab6df-d6f3-4085-f371-59d2dfd1d60b" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>]<span class="op">=</span>pd.to_datetime(data[<span class="st">"Timestamp"</span>],errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>data_COVID<span class="op">=</span>data[(data[<span class="st">"Timestamp"</span>].dt.year<span class="op">==</span><span class="dv">2020</span>) <span class="op">|</span> (data[<span class="st">"Timestamp"</span>].dt.year<span class="op">==</span><span class="dv">2021</span>)]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>data_COVID<span class="op">=</span>data_COVID.dropna(subset<span class="op">=</span>[<span class="st">"PM2.5"</span>])</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>avg_data_COVID<span class="op">=</span>data_COVID.groupby(<span class="st">"state"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>min_data_COVID<span class="op">=</span>avg_data_COVID.idxmin()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The state with the lowest average PM2.5 levels during the Covid period was '</span><span class="sc">{</span>min_data_COVID<span class="sc">}</span><span class="ss">' with average PM2.5 value as </span><span class="sc">{</span><span class="bu">round</span>(avg_data_COVID[min_data_COVID],<span class="dv">2</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The state with the lowest average PM2.5 levels during the Covid period was 'Mizoram' with average PM2.5 value as 14.32</code></pre>
+</div>
+</div>
+</section>
+<section id="temporal-aggregation" class="level1">
+<h1>Temporal Aggregation</h1>
+<ol type="1">
+<li>Report the station that recorded the highest value of PM 2.5 for the month Aug of 2020.</li>
+</ol>
+<div id="cell-13" class="cell" data-outputid="c9c90747-955c-4434-ae5e-6982c361ecb1" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>]<span class="op">=</span>pd.to_datetime(data[<span class="st">"Timestamp"</span>],errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>data_req<span class="op">=</span>data[(data[<span class="st">"Timestamp"</span>].dt.year<span class="op">==</span><span class="dv">2020</span>) <span class="op">&amp;</span> (data[<span class="st">"Timestamp"</span>].dt.month<span class="op">==</span><span class="dv">8</span>)]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>max_value<span class="op">=</span>data_req[<span class="st">"PM2.5"</span>].idxmax()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>max_value_station<span class="op">=</span>data_req.loc[max_value,<span class="st">"station"</span>]</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The station that recorded the highest value of PM 2.5 for the month Aug of 2020 was '</span><span class="sc">{</span>max_value_station<span class="sc">}</span><span class="ss">'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The station that recorded the highest value of PM 2.5 for the month Aug of 2020 was 'Lal Bahadur Shastri Nagar, Kalaburagi - KSPCB'</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>For the year 2018, calculate the average PM2.5 concentration for each season (Seasons being Winter: December-February, Summer: March-May, and Monsoon: June-September) for stations Lal Bahadur Shastri Nagar, Kalaburagi - KSPCB. Identifying the season with the highest pollution.</li>
+</ol>
+<div id="cell-15" class="cell" data-outputid="0e907ef7-f4d1-4a65-a835-4c800b199e95" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>]<span class="op">=</span>pd.to_datetime(data[<span class="st">"Timestamp"</span>],errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Winter</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>data_Winter<span class="op">=</span>data[(data[<span class="st">"Timestamp"</span>].dt.year<span class="op">==</span><span class="dv">2018</span>) <span class="op">&amp;</span> ((data[<span class="st">"Timestamp"</span>].dt.month<span class="op">==</span><span class="dv">12</span>) <span class="op">|</span> (data[<span class="st">"Timestamp"</span>].dt.month<span class="op">&lt;=</span><span class="dv">2</span>))]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>data_Winter_station<span class="op">=</span>data_Winter.loc[data_Winter[<span class="st">"station"</span>].isin([<span class="st">"Lal Bahadur Shastri Nagar, Kalaburagi - KSPCB"</span>])]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>data_Winter_station<span class="op">=</span>data_Winter_station.dropna(subset<span class="op">=</span>[<span class="st">"PM2.5"</span>])</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>avg_data_Winter<span class="op">=</span>data_Winter_station.groupby(<span class="st">"station"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Winter:</span><span class="ch">\n</span><span class="sc">{</span>avg_data_Winter<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Summer</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>data_Summer<span class="op">=</span>data[(data[<span class="st">"Timestamp"</span>].dt.year<span class="op">==</span><span class="dv">2018</span>) <span class="op">&amp;</span> ((data[<span class="st">"Timestamp"</span>].dt.month<span class="op">&gt;=</span><span class="dv">3</span>) <span class="op">|</span> (data[<span class="st">"Timestamp"</span>].dt.month<span class="op">&lt;=</span><span class="dv">5</span>))]</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>data_Summer_station<span class="op">=</span>data_Summer.loc[data_Summer[<span class="st">"station"</span>].isin([<span class="st">"Lal Bahadur Shastri Nagar, Kalaburagi - KSPCB"</span>])]</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>data_Summer_station<span class="op">=</span>data_Summer_station.dropna(subset<span class="op">=</span>[<span class="st">"PM2.5"</span>])</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>avg_data_Summer<span class="op">=</span>data_Summer_station.groupby(<span class="st">"station"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Summer:</span><span class="ch">\n</span><span class="sc">{</span>avg_data_Summer<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Monsoon</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>data_Monsoon<span class="op">=</span>data[(data[<span class="st">"Timestamp"</span>].dt.year<span class="op">==</span><span class="dv">2018</span>) <span class="op">&amp;</span> ((data[<span class="st">"Timestamp"</span>].dt.month<span class="op">&gt;=</span><span class="dv">6</span>) <span class="op">|</span> (data[<span class="st">"Timestamp"</span>].dt.month<span class="op">&lt;=</span><span class="dv">9</span>))]</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>data_Monsoon_station<span class="op">=</span>data_Monsoon.loc[data_Monsoon[<span class="st">"station"</span>].isin([<span class="st">"Lal Bahadur Shastri Nagar, Kalaburagi - KSPCB"</span>])]</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>data_Monsoon_station<span class="op">=</span>data_Monsoon_station.dropna(subset<span class="op">=</span>[<span class="st">"PM2.5"</span>])</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>avg_data_Monsoon<span class="op">=</span>data_Monsoon_station.groupby(<span class="st">"station"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Monsoon:</span><span class="ch">\n</span><span class="sc">{</span>avg_data_Monsoon<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Winter:
+station
+Lal Bahadur Shastri Nagar, Kalaburagi - KSPCB    67.492344
+Name: PM2.5, dtype: float64
+
+Summer:
+station
+Lal Bahadur Shastri Nagar, Kalaburagi - KSPCB    52.729377
+Name: PM2.5, dtype: float64
+
+Monsoon:
+station
+Lal Bahadur Shastri Nagar, Kalaburagi - KSPCB    52.729377
+Name: PM2.5, dtype: float64
+</code></pre>
+</div>
+</div>
+<p>Can you suggest some potential factors on why certain seasons are generally more polluted than others?</p>
+<p><strong>ANS:</strong></p>
+<ol type="1">
+<li><p>Winter - Temperature inversions trap pollutants, less wind dispersal, more biomass burning.</p></li>
+<li><p>Summer - Strong sunlight increases ozone (O₃) formation, dust storms in dry areas.</p></li>
+<li><p>Monsoon - Rainfall helps wash out pollutants, improving air quality.</p></li>
+<li><p>Compare the average PM2.5 levels during weekends and weekdays for the station Lal Bahadur Shastri Nagar, Kalaburagi - KSPCB over the year 2021. Create a plot to show these trends Steps:</p></li>
+</ol>
+<p>Calculate the monthly average PM2.5 for weekdays and weekends separately</p>
+<p>X-axis: Months (January to December).</p>
+<p>Y-axis: Average PM2.5 levels.</p>
+<p>Use two lines: one for the monthly average PM2.5 levels on weekdays and one for weekends</p>
+<div id="cell-22" class="cell" data-outputid="c58c77e8-8c12-4f10-9c2d-20507857a411" data-execution_count="102">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>]<span class="op">=</span>pd.to_datetime(data[<span class="st">"Timestamp"</span>],errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>data_2021<span class="op">=</span>data[(data[<span class="st">"Timestamp"</span>].dt.year<span class="op">==</span><span class="dv">2021</span>) <span class="op">&amp;</span> (data[<span class="st">"station"</span>]<span class="op">==</span><span class="st">"Lal Bahadur Shastri Nagar, Kalaburagi - KSPCB"</span>)]</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>data_2021<span class="op">=</span>data_2021.dropna(subset<span class="op">=</span>[<span class="st">"PM2.5"</span>])</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>data_2021[<span class="st">"Month"</span>]<span class="op">=</span>data_2021[<span class="st">"Timestamp"</span>].dt.month</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>data_2021[<span class="st">"Day of Week"</span>]<span class="op">=</span>data_2021[<span class="st">"Timestamp"</span>].dt.dayofweek</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>weekdays_data<span class="op">=</span>data_2021[data_2021[<span class="st">"Day of Week"</span>]<span class="op">&lt;</span><span class="dv">5</span>]</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>weekends_data<span class="op">=</span>data_2021[data_2021[<span class="st">"Day of Week"</span>]<span class="op">&gt;=</span><span class="dv">5</span>]</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>month_avg_weekdays<span class="op">=</span>weekdays_data.groupby(<span class="st">"Month"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>month_avg_weekends<span class="op">=</span>weekends_data.groupby(<span class="st">"Month"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>plt.plot(month_avg_weekdays.index, month_avg_weekdays.values, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, label<span class="op">=</span><span class="st">"Weekdays"</span>)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>plt.plot(month_avg_weekends.index, month_avg_weekends.values, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, label<span class="op">=</span><span class="st">"Weekends"</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Month"</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Average PM2.5"</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Average PM2.5 Levels During Weekdays and Weekends"</span>)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">13</span>))</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J001_PSDV_Assignment3_files/figure-html/cell-9-output-1.png" width="842" height="546" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="spatio-temporal-aggregation" class="level1">
+<h1>Spatio-temporal aggregation</h1>
+<ol type="1">
+<li>For each state, calculate the percentage increase or decrease in PM2.5 levels during monsoon months (June to September) compared to summer months (March to May). Which state has the most difference (increase or decrease) for the year 2022?</li>
+</ol>
+<div id="cell-25" class="cell" data-outputid="eb707130-0ebc-45a0-88b8-6c1a66e4b429" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>]<span class="op">=</span>pd.to_datetime(data[<span class="st">"Timestamp"</span>],errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>data_2022<span class="op">=</span>data[data[<span class="st">"Timestamp"</span>].dt.year<span class="op">==</span><span class="dv">2022</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>data_2022<span class="op">=</span>data_2022.dropna(subset<span class="op">=</span>[<span class="st">"PM2.5"</span>])</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>data_2022[<span class="st">"Month"</span>]<span class="op">=</span>data_2022[<span class="st">"Timestamp"</span>].dt.month</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>data_Monsoon<span class="op">=</span>data_2022[(data_2022[<span class="st">"Month"</span>]<span class="op">&lt;=</span><span class="dv">9</span>) <span class="op">&amp;</span> (data_2022[<span class="st">"Month"</span>]<span class="op">&gt;=</span><span class="dv">6</span>)]</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>state_monsoon_data<span class="op">=</span>data_Monsoon.groupby(<span class="st">"state"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>data_Summer<span class="op">=</span>data_2022[(data_2022[<span class="st">"Month"</span>]<span class="op">&lt;=</span><span class="dv">5</span>) <span class="op">&amp;</span> (data_2022[<span class="st">"Month"</span>]<span class="op">&gt;=</span><span class="dv">3</span>)]</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>state_summer_data<span class="op">=</span>data_Summer.groupby(<span class="st">"state"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>percent_change<span class="op">=</span>((state_monsoon_data<span class="op">-</span>state_summer_data)<span class="op">/</span>state_summer_data)<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Here change for every state is negative so decrement so the most negative value will be the highest change.</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>max_change_state<span class="op">=</span>percent_change.idxmin()</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The state with the most difference (decrease) for the year 2022 was '</span><span class="sc">{</span>max_change_state<span class="sc">}</span><span class="ss">' with </span><span class="sc">{</span><span class="bu">round</span>(<span class="bu">abs</span>(percent_change[max_change_state]),<span class="dv">4</span>)<span class="sc">}</span><span class="ss"> % change"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The state with the most difference (decrease) for the year 2022 was 'Assam' with 61.1764 % change</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Plot the average PM2.5 levels for Delhi across each season (Winter: December-February, Summer: March-May, Monsoon: June-September) from 2017 to 2023. What seasonal variation, if any, can you observe in pollution levels?</li>
+</ol>
+<div id="cell-27" class="cell" data-outputid="2cdb17fe-aeee-46ab-840d-97e134b30a92" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">"Timestamp"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>data_delhi <span class="op">=</span> data[(data[<span class="st">"state"</span>] <span class="op">==</span> <span class="st">"Delhi"</span>) <span class="op">&amp;</span> (data[<span class="st">"Timestamp"</span>].dt.year <span class="op">&gt;=</span> <span class="dv">2017</span>) <span class="op">&amp;</span> (data[<span class="st">"Timestamp"</span>].dt.year <span class="op">&lt;=</span> <span class="dv">2023</span>)]</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>data_delhi <span class="op">=</span> data_delhi.dropna(subset<span class="op">=</span>[<span class="st">"PM2.5"</span>])</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>data_delhi[<span class="st">"Month"</span>] <span class="op">=</span> data_delhi[<span class="st">"Timestamp"</span>].dt.month</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>data_delhi_summer <span class="op">=</span> data_delhi[(data_delhi[<span class="st">"Month"</span>] <span class="op">&gt;=</span> <span class="dv">3</span>) <span class="op">&amp;</span> (data_delhi[<span class="st">"Month"</span>] <span class="op">&lt;=</span> <span class="dv">5</span>)]</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>data_delhi_monsoon <span class="op">=</span> data_delhi[(data_delhi[<span class="st">"Month"</span>] <span class="op">&gt;=</span> <span class="dv">6</span>) <span class="op">&amp;</span> (data_delhi[<span class="st">"Month"</span>] <span class="op">&lt;=</span> <span class="dv">9</span>)]</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>data_delhi_winter <span class="op">=</span> data_delhi[(data_delhi[<span class="st">"Month"</span>] <span class="op">==</span> <span class="dv">12</span>) <span class="op">|</span> (data_delhi[<span class="st">"Month"</span>] <span class="op">&lt;=</span> <span class="dv">2</span>)]</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>avg_delhi_summer <span class="op">=</span> data_delhi_summer.groupby(data_delhi_summer[<span class="st">"Timestamp"</span>].dt.year)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>avg_delhi_monsoon <span class="op">=</span> data_delhi_monsoon.groupby(data_delhi_monsoon[<span class="st">"Timestamp"</span>].dt.year)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>avg_delhi_winter <span class="op">=</span> data_delhi_winter.groupby(data_delhi_winter[<span class="st">"Timestamp"</span>].dt.year)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>plt.plot(avg_delhi_summer.index, avg_delhi_summer.values, label<span class="op">=</span><span class="st">"Summer"</span>, marker<span class="op">=</span><span class="st">'o'</span>,color<span class="op">=</span><span class="st">"Orange"</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>plt.plot(avg_delhi_monsoon.index, avg_delhi_monsoon.values, label<span class="op">=</span><span class="st">"Monsoon"</span>, marker<span class="op">=</span><span class="st">'o'</span>,color<span class="op">=</span><span class="st">"Green"</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>plt.plot(avg_delhi_winter.index, avg_delhi_winter.values, label<span class="op">=</span><span class="st">"Winter"</span>, marker<span class="op">=</span><span class="st">'o'</span>,color<span class="op">=</span><span class="st">"Blue"</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Seasonal Variation of PM2.5 Levels in Delhi (2017-2023)"</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Average PM2.5 (µg/m³)"</span>)</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Winter: PM2.5 levels are usually highest due to low temperatures, temperature inversion, and increased emissions (heating, burning).</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Summer: PM2.5 levels moderately high but lower than winter due to better air circulation.</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Monsoon: PM2.5 levels are lowest due to rainfall washing pollutants away</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J001_PSDV_Assignment3_files/figure-html/cell-11-output-1.png" width="990" height="588" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Plot a time-series graph comparing Delhi’s PM2.5 levels with Mumbai’s from 2015 to 2023. Which city had more fluctuations? (Hint: Think what fluctuation means)</li>
+</ol>
+<div id="cell-29" class="cell" data-outputid="9c177b39-77a2-4bac-fcbb-857739c8192d" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>]<span class="op">=</span>pd.to_datetime(data[<span class="st">"Timestamp"</span>],errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>data_req<span class="op">=</span>data[(data[<span class="st">"Timestamp"</span>].dt.year<span class="op">&gt;=</span><span class="dv">2015</span>) <span class="op">&amp;</span> (data[<span class="st">"Timestamp"</span>].dt.year<span class="op">&lt;=</span><span class="dv">2023</span>) <span class="op">&amp;</span> ((data[<span class="st">"state"</span>]<span class="op">==</span><span class="st">"Delhi"</span>) <span class="op">|</span> (data[<span class="st">"city"</span>]<span class="op">==</span><span class="st">"Mumbai"</span>))]</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>data_req<span class="op">=</span>data_req.dropna(subset<span class="op">=</span>[<span class="st">"PM2.5"</span>])</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>data_req[<span class="st">"Year"</span>]<span class="op">=</span>data_req[<span class="st">"Timestamp"</span>].dt.year</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>avg_mumbai<span class="op">=</span>data_req[data_req[<span class="st">"city"</span>]<span class="op">==</span><span class="st">"Mumbai"</span>].groupby(<span class="st">"Year"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>avg_delhi<span class="op">=</span>data_req[data_req[<span class="st">"state"</span>]<span class="op">==</span><span class="st">"Delhi"</span>].groupby(<span class="st">"Year"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>plt.plot(avg_mumbai.index,avg_mumbai.values,label<span class="op">=</span><span class="st">"Mumbai"</span>,marker<span class="op">=</span><span class="st">"o"</span>)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>plt.plot(avg_delhi.index,avg_delhi.values,label<span class="op">=</span><span class="st">"Delhi"</span>,marker<span class="op">=</span><span class="st">"o"</span>)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Delhi V/S Mumbai"</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Average PM2.5 (µg/m³)"</span>)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>,linestyle<span class="op">=</span><span class="st">"--"</span>,alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>state_fluctuations<span class="op">=</span>data_req.groupby(<span class="st">"state"</span>)[<span class="st">"PM2.5"</span>].std()</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>city_fluctuations<span class="op">=</span>data_req.groupby(<span class="st">"city"</span>)[<span class="st">"PM2.5"</span>].std()</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>delhi_fluctuation<span class="op">=</span>state_fluctuations[<span class="st">"Delhi"</span>]</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>mumbai_fluctuation<span class="op">=</span>city_fluctuations[<span class="st">"Mumbai"</span>]</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> delhi_fluctuation<span class="op">&gt;</span>mumbai_fluctuation:</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Delhi had more fluctuations"</span>)</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Mumbai had more fluctuations"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J001_PSDV_Assignment3_files/figure-html/cell-12-output-1.png" width="990" height="588" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Delhi had more fluctuations</code></pre>
+</div>
+</div>
+</section>
+<section id="population-based" class="level1">
+<h1>Population-Based</h1>
+<ol type="1">
+<li>Which state in India has the highest number of monitoring stations relative to its population?</li>
+</ol>
+<div id="cell-32" class="cell" data-outputid="2643b544-016d-4e99-f342-56ec99a8f77e" data-execution_count="106">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>station_data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>population_data<span class="op">=</span>pd.read_csv(<span class="st">"State_data.csv"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>grouped_station_data<span class="op">=</span>station_data.groupby(<span class="st">"state"</span>)[<span class="st">"station"</span>].count()</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>grouped_population_data<span class="op">=</span>population_data.groupby(<span class="st">"State"</span>)[<span class="st">"Population"</span>].<span class="bu">sum</span>()</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>relative_data<span class="op">=</span>grouped_station_data<span class="op">/</span>grouped_population_data</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>max_relative_state<span class="op">=</span>relative_data.idxmax()</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The state with the highest number of monitoring stations relative to its population was '</span><span class="sc">{</span>max_relative_state<span class="sc">}</span><span class="ss">'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The state with the highest number of monitoring stations relative to its population was 'Chandigarh'</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Plot a bar chart showing the top 5 most polluted states in terms of per capita PM2.5 exposure in 2023.</li>
+</ol>
+<div id="cell-34" class="cell" data-outputid="adb5e643-7705-4111-ccbb-126c0e8fa9d5" data-execution_count="107">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>state_data<span class="op">=</span>pd.read_csv(<span class="st">"State_data.csv"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>]<span class="op">=</span>pd.to_datetime(data[<span class="st">"Timestamp"</span>],errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>data_2023<span class="op">=</span>data[data[<span class="st">"Timestamp"</span>].dt.year<span class="op">==</span><span class="dv">2023</span>]</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>data_2023<span class="op">=</span>data_2023.dropna(subset<span class="op">=</span>[<span class="st">"PM2.5"</span>])</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>pollu_state_data<span class="op">=</span>data_2023.groupby(<span class="st">"state"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>population_data<span class="op">=</span>state_data.groupby(<span class="st">"State"</span>)[<span class="st">"Population"</span>].<span class="bu">sum</span>()</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>per_capita_data<span class="op">=</span>pollu_state_data<span class="op">/</span>population_data</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>top_5<span class="op">=</span>per_capita_data.sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">5</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>top_5.plot(kind<span class="op">=</span><span class="st">"bar"</span>, color<span class="op">=</span><span class="st">"orange"</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Top 5 Most Polluted States (Per Capita PM2.5 Exposure) - 2023"</span>)</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"State"</span>)</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Per Capita PM2.5 Exposure (µg/m³) per person)"</span>)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">"y"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J001_PSDV_Assignment3_files/figure-html/cell-14-output-1.png" width="833" height="599" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Plot the relationship between population density and average PM2.5 concentration for each state. What conclusion can you draw about the correlation between population density and pollution? X-axis: Population density (people per square kilometer). Y-axis: Average PM2.5 concentration. Use a scatter plot to show the relationship, where each point represents a state.`</li>
+</ol>
+<div id="cell-36" class="cell" data-outputid="08113344-6e73-42ce-ad55-6a7b22f7c607" data-execution_count="108">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>state_data<span class="op">=</span>pd.read_csv(<span class="st">"State_data.csv"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>pollu_state_data<span class="op">=</span>data.groupby(<span class="st">"state"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>population_data<span class="op">=</span>state_data.groupby(<span class="st">"State"</span>)[<span class="st">"Population"</span>].<span class="bu">sum</span>()</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>area_data<span class="op">=</span>state_data.groupby(<span class="st">"State"</span>)[<span class="st">"Area (km2)"</span>].<span class="bu">sum</span>()</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>population_density<span class="op">=</span>population_data<span class="op">/</span>area_data</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>plt.scatter(population_density, pollu_state_data, color<span class="op">=</span><span class="st">"blue"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Population Density (people per km²)"</span>)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Average PM2.5 (µg/m³)"</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Population Density vs. PM2.5 Levels (2023)"</span>)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J001_PSDV_Assignment3_files/figure-html/cell-15-output-1.png" width="850" height="546" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="area-based" class="level1">
+<h1>Area Based</h1>
+<ol type="1">
+<li>Which state has the highest PM2.5 concentration per square kilometer? Plot the pollution levels for all states relative to their area. X-axis: States. Y-axis: PM2.5 concentration per square kilometer. Use a bar plot where each bar represents a state, and the height shows PM2.5 per sq km.</li>
+</ol>
+<div id="cell-39" class="cell" data-outputid="8c636bda-ba33-48d6-9561-7fae1252e697" data-execution_count="109">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>state_data<span class="op">=</span>pd.read_csv(<span class="st">"State_data.csv"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>pollu_state_data<span class="op">=</span>data.groupby(<span class="st">"state"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>area_data<span class="op">=</span>state_data.groupby(<span class="st">"State"</span>)[<span class="st">"Area (km2)"</span>].<span class="bu">sum</span>()</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>pollu_per_sq_km<span class="op">=</span>pollu_state_data<span class="op">/</span>area_data</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>max_pollu_state<span class="op">=</span>pollu_per_sq_km.idxmax()</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The state with the highest PM2.5 concentration per square kilometer is '</span><span class="sc">{</span>max_pollu_state<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>colors<span class="op">=</span>[<span class="st">"Orange"</span>,<span class="st">"Blue"</span>,<span class="st">"Green"</span>,<span class="st">"Yellow"</span>,<span class="st">"Red"</span>]</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>bars<span class="op">=</span>plt.bar(pollu_per_sq_km.index,pollu_per_sq_km.values,color<span class="op">=</span>colors)</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>plt.bar_label(bars, fmt<span class="op">=</span><span class="st">"</span><span class="sc">%.4f</span><span class="st">"</span>, label_type<span class="op">=</span><span class="st">"edge"</span>, fontsize<span class="op">=</span><span class="dv">10</span>, rotation<span class="op">=</span><span class="dv">90</span>, padding<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">"log"</span>)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Pollution levels relative to area"</span>)</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"State"</span>)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"PM2.5 per sq km"</span>)</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">"y"</span>,linestyle<span class="op">=</span><span class="st">"--"</span>,alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The state with the highest PM2.5 concentration per square kilometer is 'Chandigarh'</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J001_PSDV_Assignment3_files/figure-html/cell-16-output-2.png" width="989" height="594" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Compare the total number of monitoring stations per square kilometer in each state. Identify the state with the highest density of monitoring stations relative to its area. Show a bar plot where each bar represents a state, and the height shows the number of monitoring stations per square kilometer.</li>
+</ol>
+<div id="cell-41" class="cell" data-outputid="b0f7a359-6a6e-443c-a141-5c415a30678f" data-execution_count="110">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>state_data<span class="op">=</span>pd.read_csv(<span class="st">"State_data.csv"</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>station_data<span class="op">=</span>data.groupby(<span class="st">"state"</span>)[<span class="st">"station"</span>].count()</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>area_data<span class="op">=</span>state_data.groupby(<span class="st">"State"</span>)[<span class="st">"Area (km2)"</span>].<span class="bu">sum</span>()</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>station_per_sq_km<span class="op">=</span>station_data<span class="op">/</span>area_data</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>max_station_state<span class="op">=</span>station_per_sq_km.idxmax()</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The state with the highest density of monitoring stations relative to its area is '</span><span class="sc">{</span>max_station_state<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>colors<span class="op">=</span>[<span class="st">"Orange"</span>,<span class="st">"Blue"</span>,<span class="st">"Green"</span>,<span class="st">"Yellow"</span>,<span class="st">"Red"</span>]</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>bars<span class="op">=</span>plt.bar(station_per_sq_km.index,station_per_sq_km.values,color<span class="op">=</span>colors)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>plt.bar_label(bars, fmt<span class="op">=</span><span class="st">"</span><span class="sc">%.2f</span><span class="st">"</span>, label_type<span class="op">=</span><span class="st">"edge"</span>, fontsize<span class="op">=</span><span class="dv">10</span>, rotation<span class="op">=</span><span class="dv">90</span>, padding<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">"log"</span>)</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Monitoring stations relative to Area"</span>)</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"State"</span>)</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Monitoring stations per sq km"</span>)</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">"y"</span>,linestyle<span class="op">=</span><span class="st">"--"</span>,alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The state with the highest density of monitoring stations relative to its area is 'Delhi'</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J001_PSDV_Assignment3_files/figure-html/cell-17-output-2.png" width="989" height="594" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Compare the average PM2.5 levels between Maharashtra and Madhya Pradesh over the year 2021. Given that both states have similar area sizes but different population densities, analyze how population density impacts pollution levels in these two states.</li>
+</ol>
+<div id="cell-43" class="cell" data-outputid="c94c91f4-66e6-4efe-9fce-2375127e4483" data-execution_count="111">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>state_data<span class="op">=</span>pd.read_csv(<span class="st">"State_data.csv"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>]<span class="op">=</span>pd.to_datetime(data[<span class="st">"Timestamp"</span>],errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>data_2021<span class="op">=</span>data[data[<span class="st">"Timestamp"</span>].dt.year<span class="op">==</span><span class="dv">2021</span>]</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>data_2021<span class="op">=</span>data_2021.dropna(subset<span class="op">=</span>[<span class="st">"PM2.5"</span>])</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>grouped_data<span class="op">=</span>data_2021.groupby(<span class="st">"state"</span>)[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>maharashtra_data<span class="op">=</span>grouped_data[<span class="st">"Maharashtra"</span>]</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>madhya_pradesh_data<span class="op">=</span>grouped_data[<span class="st">"Madhya Pradesh"</span>]</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>state_population<span class="op">=</span>state_data.groupby(<span class="st">"State"</span>)[<span class="st">"Population"</span>].<span class="bu">sum</span>()</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>maharashtra_population<span class="op">=</span>state_population[<span class="st">"Maharashtra"</span>]</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>madhya_pradesh_population<span class="op">=</span>state_population[<span class="st">"Madhya Pradesh"</span>]</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>area_data<span class="op">=</span>state_data.groupby(<span class="st">"State"</span>)[<span class="st">"Area (km2)"</span>].<span class="bu">sum</span>()</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>maharashtra_area<span class="op">=</span>area_data[<span class="st">"Maharashtra"</span>]</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>madhya_pradesh_area<span class="op">=</span>area_data[<span class="st">"Madhya Pradesh"</span>]</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>population_density_maharashtra<span class="op">=</span>maharashtra_population<span class="op">/</span>maharashtra_area</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>population_density_madhya_pradesh<span class="op">=</span>madhya_pradesh_population<span class="op">/</span>madhya_pradesh_area</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (population_density_maharashtra<span class="op">&gt;</span>population_density_madhya_pradesh) <span class="op">&amp;</span> (maharashtra_data<span class="op">&gt;</span>madhya_pradesh_data):</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Maharashtra has more pollution and more population density, meaning more people so, more pollution."</span>)</span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> (population_density_maharashtra<span class="op">&gt;</span>population_density_madhya_pradesh) <span class="op">&amp;</span> (maharashtra_data<span class="op">&lt;</span>madhya_pradesh_data):</span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Madhya Pradesh has more pollution but less population density, meaning the major sources of pollution are industries and manufacturing."</span>)</span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> (population_density_maharashtra<span class="op">&lt;</span>population_density_madhya_pradesh) <span class="op">&amp;</span> (maharashtra_data<span class="op">&lt;</span>madhya_pradesh_data):</span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Madhya Pradesh has more pollution and more population density, meaning more people so, more pollution."</span>)</span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Maharashtra has more pollution but less population density, meaning the major sources of pollution are industries and manufacturing."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Madhya Pradesh has more pollution but less population density, meaning the major sources of pollution are industries and manufacturing.</code></pre>
+</div>
+</div>
+</section>
+<section id="funding-based" class="level1">
+<h1>Funding Based</h1>
+<ol type="1">
+<li>Compare the average PM2.5 levels between states that received NCAP funding and those that did not in 2021.</li>
+</ol>
+<div id="cell-46" class="cell" data-outputid="b6accb47-6a01-4bcf-ae2d-100a250fc2f7" data-execution_count="112">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>state_data<span class="op">=</span>pd.read_csv(<span class="st">"State_data.csv"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>funding_data<span class="op">=</span>pd.read_csv(<span class="st">"NCAP_Funding.csv"</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">"Timestamp"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Year"</span>]<span class="op">=</span>data[<span class="st">"Timestamp"</span>].dt.year</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>funding_2021 <span class="op">=</span> funding_data[funding_data[<span class="st">"Amount released during FY 2021-22"</span>] <span class="op">!=</span> <span class="st">"-"</span>]</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>funded_states_2021 <span class="op">=</span> <span class="bu">set</span>(funding_2021[<span class="st">"State"</span>])</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>funded_pollution <span class="op">=</span> data[data[<span class="st">"state"</span>].isin(funded_states_2021)]</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>non_funded_pollution <span class="op">=</span> data[<span class="op">~</span>data[<span class="st">"state"</span>].isin(funded_states_2021)]</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>avg_pm25_funded <span class="op">=</span> funded_pollution[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>avg_pm25_not_funded <span class="op">=</span> non_funded_pollution[<span class="st">"PM2.5"</span>].mean()</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Average PM2.5 in NCAP funded states (2021): </span><span class="sc">{</span>avg_pm25_funded<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Average PM2.5 in non-funded states (2021): </span><span class="sc">{</span>avg_pm25_not_funded<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average PM2.5 in NCAP funded states (2021): 62.07
+Average PM2.5 in non-funded states (2021): 52.87</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Create a time series plot showing PM2.5 levels with an increment in NCAP funding for Assam. Has an increment of the financing led to noticeable improvements in air quality?</li>
+</ol>
+<div id="cell-48" class="cell" data-outputid="f25adf62-6f61-49cc-cb26-00b2074bd037" data-execution_count="116">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>assam_funding <span class="op">=</span> funding_data[funding_data[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Assam'</span>]</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">"Timestamp"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Year"</span>]<span class="op">=</span>data[<span class="st">"Timestamp"</span>].dt.year</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>data_2019 <span class="op">=</span> data[data[<span class="st">'Year'</span>] <span class="op">==</span> <span class="dv">2019</span>]</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>data_2020 <span class="op">=</span> data[data[<span class="st">'Year'</span>] <span class="op">==</span> <span class="dv">2020</span>]</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>assam_19 <span class="op">=</span> assam_funding.groupby(<span class="st">'State'</span>)[<span class="st">'Amount released during FY 2019-20'</span>].<span class="bu">sum</span>().values[<span class="dv">0</span>]</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>assam_20 <span class="op">=</span> assam_funding.groupby(<span class="st">'State'</span>)[<span class="st">'Amount released during FY 2020-21'</span>].<span class="bu">sum</span>().values[<span class="dv">0</span>]</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>assam_21 <span class="op">=</span> assam_funding.groupby(<span class="st">'State'</span>)[<span class="st">'Amount released during FY 2021-22'</span>].<span class="bu">sum</span>().values[<span class="dv">0</span>]</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>assam_pm2_19 <span class="op">=</span> data_2019[data_2019[<span class="st">'state'</span>] <span class="op">==</span> <span class="st">'Assam'</span>][<span class="st">'PM2.5'</span>].mean()</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>assam_pm2_20 <span class="op">=</span> data_2020[data_2020[<span class="st">'state'</span>] <span class="op">==</span> <span class="st">'Assam'</span>][<span class="st">'PM2.5'</span>].mean()</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>assam_pm2_21 <span class="op">=</span> data_2021[data_2021[<span class="st">'state'</span>] <span class="op">==</span> <span class="st">'Assam'</span>][<span class="st">'PM2.5'</span>].mean()</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> [<span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2021</span>]</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>funding_values <span class="op">=</span> [assam_19, assam_20, assam_21]</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>pm25_values <span class="op">=</span> [assam_pm2_19, assam_pm2_20, assam_pm2_21]</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>ax1.plot(years, pm25_values, label <span class="op">=</span> <span class="st">'PM2.5 Levels'</span>, color <span class="op">=</span> <span class="st">'red'</span>, marker <span class="op">=</span> <span class="st">'o'</span>)</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Year'</span>)</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Average PM2.5 Levels'</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>ax1.tick_params(axis <span class="op">=</span> <span class="st">'y'</span>, labelcolor <span class="op">=</span> <span class="st">'red'</span>)</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>ax1.set_xticks(years)</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>ax2.plot(years, funding_values, label <span class="op">=</span> <span class="st">'Funding'</span>, color <span class="op">=</span> <span class="st">'blue'</span>, marker <span class="op">=</span> <span class="st">'o'</span>)</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'NCAP Funding (in crore)'</span>, color <span class="op">=</span> <span class="st">'blue'</span>)</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis <span class="op">=</span> <span class="st">'y'</span>, labelcolor <span class="op">=</span> <span class="st">'blue'</span>)</span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Assam: PM2.5 Levels vs. NCAP Funding (2019-2021)'</span>)</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>fig.legend(loc <span class="op">=</span> <span class="st">"upper right"</span>, ncol <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J001_PSDV_Assignment3_files/figure-html/cell-20-output-1.png" width="997" height="598" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-49" class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>assam_funding <span class="op">=</span> funding_data[funding_data[<span class="st">'State'</span>] <span class="op">==</span> <span class="st">'Assam'</span>]</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">"Timestamp"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Year"</span>]<span class="op">=</span>data[<span class="st">"Timestamp"</span>].dt.year</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>data_2019 <span class="op">=</span> data[data[<span class="st">'Year'</span>] <span class="op">==</span> <span class="dv">2019</span>]</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>assam_19 <span class="op">=</span> assam_funding.groupby(<span class="st">'State'</span>)[<span class="st">'Amount released during FY 2019-20'</span>].<span class="bu">sum</span>().values[<span class="dv">0</span>]</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>assam_20 <span class="op">=</span> assam_funding.groupby(<span class="st">'State'</span>)[<span class="st">'Amount released during FY 2020-21'</span>].<span class="bu">sum</span>().values[<span class="dv">0</span>]</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>assam_21 <span class="op">=</span> assam_funding.groupby(<span class="st">'State'</span>)[<span class="st">'Amount released during FY 2021-22'</span>].<span class="bu">sum</span>().values[<span class="dv">0</span>]</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>assam_pm2_19 <span class="op">=</span> data_2019[data_2019[<span class="st">'state'</span>] <span class="op">==</span> <span class="st">'Assam'</span>][<span class="st">'PM2.5'</span>].mean()</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>assam_pm2_20 <span class="op">=</span> data_2020[data_2020[<span class="st">'state'</span>] <span class="op">==</span> <span class="st">'Assam'</span>][<span class="st">'PM2.5'</span>].mean()</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>assam_pm2_21 <span class="op">=</span> data_2021[data_2021[<span class="st">'state'</span>] <span class="op">==</span> <span class="st">'Assam'</span>][<span class="st">'PM2.5'</span>].mean()</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> [<span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2021</span>]</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>funding_values <span class="op">=</span> [assam_19, assam_20, assam_21]</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>pm25_values <span class="op">=</span> [assam_pm2_19, assam_pm2_20, assam_pm2_21]</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>ax1.plot(years, pm25_values, label <span class="op">=</span> <span class="st">'PM2.5 Levels'</span>, color <span class="op">=</span> <span class="st">'red'</span>, marker <span class="op">=</span> <span class="st">'o'</span>)</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Year'</span>)</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Average PM2.5 Levels'</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>ax1.tick_params(axis <span class="op">=</span> <span class="st">'y'</span>, labelcolor <span class="op">=</span> <span class="st">'red'</span>)</span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>ax1.set_xticks(years)</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>ax2.plot(years, funding_values, label <span class="op">=</span> <span class="st">'Funding'</span>, color <span class="op">=</span> <span class="st">'blue'</span>, marker <span class="op">=</span> <span class="st">'o'</span>)</span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'NCAP Funding (in crore)'</span>, color <span class="op">=</span> <span class="st">'blue'</span>)</span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis <span class="op">=</span> <span class="st">'y'</span>, labelcolor <span class="op">=</span> <span class="st">'blue'</span>)</span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Assam: PM2.5 Levels vs. NCAP Funding (2019-2021)'</span>)</span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>fig.legend(loc <span class="op">=</span> <span class="st">"upper right"</span>, ncol <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a><span class="co"># No increase in funding has led to a decrease in air quality as compared to 2019 and increased a little in 2021 as compared to 2020.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>Create a scatter plot to showcase the area versus funding received by a state. Mark every state with a different color and show the legend outside the plot.</li>
+</ol>
+<div id="cell-51" class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>funding_data <span class="op">=</span> pd.read_csv(<span class="st">'NCAP_Funding.csv'</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>state_data <span class="op">=</span> pd.read_csv(<span class="st">'State_data.csv'</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>numeric_columns <span class="op">=</span> [<span class="st">'Amount released during FY 2019-20'</span>, <span class="st">'Amount released during FY 2020-21'</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Amount released during FY 2021-22'</span>, <span class="st">'Total fund released'</span>, <span class="st">'Utilisation as on June 2022'</span>]</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> numeric_columns:</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    funding_data[col] <span class="op">=</span> pd.to_numeric(funding_data[col].replace(<span class="st">'-'</span>, <span class="st">'0'</span>), errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>state_funding <span class="op">=</span> funding_data.groupby(<span class="st">'State'</span>)[<span class="st">'Total fund released'</span>].<span class="bu">sum</span>().reset_index()</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>merged_data <span class="op">=</span> pd.merge(state_funding, state_data, on<span class="op">=</span><span class="st">'State'</span>, how<span class="op">=</span><span class="st">'inner'</span>)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> plt.scatter(merged_data[<span class="st">'Area (km2)'</span>], merged_data[<span class="st">'Total fund released'</span>],</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>                      c<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(merged_data)), cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'State Area (km²)'</span>)</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Total Funding Received (Cr)'</span>)</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'State Area vs Total NCAP Funding Received'</span>)</span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>cbar <span class="op">=</span> plt.colorbar(scatter)</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>cbar.set_label(<span class="st">'States'</span>)</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>cbar.set_ticks(<span class="bu">range</span>(<span class="bu">len</span>(merged_data)))</span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>cbar.set_ticklabels(merged_data[<span class="st">'State'</span>])</span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="miscellaneous-questions" class="level1">
+<h1>Miscellaneous Questions</h1>
+<ol type="1">
+<li>For the most polluted city in 2023 (highest average pollution in 2023), calculate the percentage of days with PM2.5 levels above the hazardous threshold (300 µg/m³)[1 Mark]</li>
+</ol>
+<div id="cell-54" class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Timestamp'</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">'Timestamp'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>data_2023 <span class="op">=</span> data[data[<span class="st">'Timestamp'</span>].dt.year <span class="op">==</span> <span class="dv">2023</span>].dropna(subset<span class="op">=</span>[<span class="st">'PM2.5'</span>, <span class="st">'city'</span>])</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>most_polluted_city <span class="op">=</span> data_2023.groupby(<span class="st">'city'</span>)[<span class="st">'PM2.5'</span>].mean().idxmax()</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>daily_avg_pm25 <span class="op">=</span> data_2023[data_2023[<span class="st">'city'</span>] <span class="op">==</span> most_polluted_city].groupby(data_2023[<span class="st">'Timestamp'</span>].dt.date)[<span class="st">'PM2.5'</span>].mean()</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>hazardous_percentage <span class="op">=</span> (daily_avg_pm25 <span class="op">&gt;</span> <span class="dv">300</span>).mean() <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Most Polluted City in 2023: </span><span class="sc">{</span>most_polluted_city<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Percentage of Hazardous Days (&gt;300 µg/m³): </span><span class="sc">{</span>hazardous_percentage<span class="sc">:.2f}</span><span class="ss">%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Analyze the PM2.5 levels in Delhi during Diwali (October-November) and New Year compared to regular months over the 3 years (2018-2020). Do you observe any significant pollution spikes during these festivals? If spikes are observed, Can you mark these spikes using arrows?</li>
+</ol>
+<div id="cell-56" class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data_delhi <span class="op">=</span> data[data[<span class="st">'state'</span>] <span class="op">==</span> <span class="st">'Delhi'</span>]</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>data_diwali_del <span class="op">=</span> data_delhi[(data_delhi[<span class="st">'Timestamp'</span>].dt.month <span class="op">==</span> <span class="dv">10</span>) <span class="op">|</span> (data_delhi[<span class="st">'Timestamp'</span>].dt.month <span class="op">==</span> <span class="dv">11</span>)]</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>data_rmonths_del <span class="op">=</span> data_delhi[data_delhi[<span class="st">'Timestamp'</span>].dt.month.isin([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>])]</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>data_diwali_del[<span class="st">'Timestamp'</span>] <span class="op">=</span> pd.to_datetime(data_diwali_del[<span class="st">'Timestamp'</span>],errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>data_rmonths_del[<span class="st">'Timestamp'</span>] <span class="op">=</span> pd.to_datetime(data_rmonths_del[<span class="st">'Timestamp'</span>],errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>data_diwali_del[<span class="st">"Year"</span>]<span class="op">=</span>data_diwali_del[<span class="st">"Timestamp"</span>].dt.year</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>data_rmonths_del[<span class="st">"Year"</span>]<span class="op">=</span>data_rmonths_del[<span class="st">"Timestamp"</span>].dt.year</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>diwali_3years <span class="op">=</span> data_diwali_del[(data_diwali_del[<span class="st">'Year'</span>] <span class="op">&gt;=</span> <span class="dv">2018</span>) <span class="op">&amp;</span> (data_diwali_del[<span class="st">'Year'</span>] <span class="op">&lt;=</span> <span class="dv">2020</span>)]</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>rmonths_3years <span class="op">=</span> data_rmonths_del[(data_rmonths_del[<span class="st">'Year'</span>] <span class="op">&gt;=</span> <span class="dv">2018</span>) <span class="op">&amp;</span> (data_rmonths_del[<span class="st">'Year'</span>] <span class="op">&lt;=</span> <span class="dv">2020</span>)]</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>diwali_avg_pm <span class="op">=</span> diwali_3years.groupby(diwali_3years[<span class="st">'Timestamp'</span>].dt.date)[<span class="st">'PM2.5'</span>].mean()</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>rmonths_avg_pm <span class="op">=</span> rmonths_3years.groupby(rmonths_3years[<span class="st">'Timestamp'</span>].dt.date)[<span class="st">'PM2.5'</span>].mean()</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>diwali_avg_pm.plot(label <span class="op">=</span> <span class="st">'Diwali (Oct-Nov)'</span>, color <span class="op">=</span> <span class="st">'red'</span>)</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>rmonths_avg_pm.plot(label <span class="op">=</span> <span class="st">'Regular Months'</span>, color <span class="op">=</span> <span class="st">'blue'</span>)</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> Year <span class="kw">in</span> [<span class="dv">2018</span>, <span class="dv">2019</span>, <span class="dv">2020</span>]:</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>    data_diwali_Year <span class="op">=</span> diwali_3years[diwali_3years[<span class="st">'Year'</span>] <span class="op">==</span> Year]</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>    diwali_avg_pm_Year <span class="op">=</span> data_diwali_Year.groupby(data_diwali_Year[<span class="st">'Timestamp'</span>].dt.date)[<span class="st">'PM2.5'</span>].mean()</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>    spike_date_Year <span class="op">=</span> diwali_avg_pm_Year.idxmax()</span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>    spike_value_Year <span class="op">=</span> diwali_avg_pm_Year.<span class="bu">max</span>()</span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>    plt.annotate(<span class="st">'Peak'</span>, xy <span class="op">=</span> (spike_date_Year, spike_value_Year), xytext <span class="op">=</span> (spike_date_Year, spike_value_Year <span class="op">+</span> <span class="dv">50</span>), arrowprops <span class="op">=</span> <span class="bu">dict</span>(facecolor <span class="op">=</span> <span class="st">'black'</span>, arrowstyle <span class="op">=</span> <span class="st">'-&gt;'</span>), color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PM2.5 Levels in Delhi (2018-2020) - Diwali vs Regular Months'</span>, pad <span class="op">=</span> <span class="dv">30</span>)</span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'PM2.5 Level (µg/m³)'</span>)</span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>plt.legend(title <span class="op">=</span> <span class="st">'Period'</span>)</span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>Identify the state that received the highest NCAP funding in 2020 and determine if its air pollution levels improved significantly by 2023. Use a line graph to compare yearly average PM2.5 trends.</li>
+</ol>
+<div id="cell-58" class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>highest_funding_state <span class="op">=</span> funding_data.groupby(<span class="st">'State'</span>)[<span class="st">'Amount released during FY 2020-21'</span>].<span class="bu">sum</span>().idxmax()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"State with highest NCAP funding in 2020: </span><span class="sc">{</span>highest_funding_state<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Timestamp"</span>] <span class="op">=</span> pd.to_datetime(data[<span class="st">"Timestamp"</span>], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Year"</span>]<span class="op">=</span>data[<span class="st">"Timestamp"</span>].dt.year</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>state_pm_trend <span class="op">=</span> data[data[<span class="st">'state'</span>] <span class="op">==</span> highest_funding_state].groupby(<span class="st">'Year'</span>)[<span class="st">'PM2.5'</span>].mean()</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x <span class="op">=</span> state_pm_trend.index, y <span class="op">=</span> state_pm_trend.values, marker <span class="op">=</span> <span class="st">'o'</span>, linewidth <span class="op">=</span> <span class="dv">2</span>, color <span class="op">=</span> <span class="st">'b'</span>)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Average PM2.5 Level (μg/m³)"</span>)</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="fl">2019.99</span>,<span class="fl">2023.01</span>)</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>plt.xticks([<span class="dv">2020</span>,<span class="dv">2021</span>,<span class="dv">2022</span>,<span class="dv">2023</span>])</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Yearly PM2.5 Trend in </span><span class="sc">{</span>highest_funding_state<span class="sc">}</span><span class="ss"> (2020-2023)"</span>)</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="1">
+<li>Draw the map of India and plot the sensor locations on the map.</li>
+</ol>
+<div id="cell-60" class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>world <span class="op">=</span> gpd.read_file(<span class="st">"ne_110m_admin_0_countries.shp"</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>india_map <span class="op">=</span> world[world[<span class="st">"ADMIN"</span>] <span class="op">==</span> <span class="st">"India"</span>]</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>sensor_data <span class="op">=</span> pd.read_csv(<span class="st">"Data.csv"</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>india_map.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"orange"</span>, edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>plt.scatter(sensor_data[<span class="st">"longitude"</span>], sensor_data[<span class="st">"latitude"</span>],</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">"brown"</span>, marker<span class="op">=</span><span class="st">"o"</span>, edgecolors<span class="op">=</span><span class="st">"black"</span>, s<span class="op">=</span><span class="dv">25</span>, label<span class="op">=</span><span class="st">"Sensor"</span>)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sensor Locations in India"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Longitude"</span>)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Latitude"</span>)</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tell-us-something-new" class="level1">
+<h1>Tell us something new</h1>
+<ol start="17" type="A">
+<li>Tell us something interesting from the dataset that we have not asked. Anything that intrigues you, anything that might be useful to the policymakers.</li>
+</ol>
+<p>Mismatch Between Pollution Levels and NCAP Funding</p>
+<p>Some cities have high PM2.5 levels (top 25%) but received low funding (bottom 25%), suggesting they may have been overlooked in NCAP allocations. Conversely, some cities received high funding but still have low improvement in air quality, indicating either inefficient fund utilization or external pollution sources. Examples from the Data High Pollution, Low Funding:</p>
+<p>Angul (Odisha): PM2.5 = 118.56 µg/m³, NCAP funding = ₹1.2 crore Nalbari (Assam): PM2.5 = 104.00 µg/m³, NCAP funding = ₹1.06 crore Rourkela (Odisha): PM2.5 = 93.19 µg/m³, NCAP funding = ₹1.2 crore These cities have some of the highest pollution levels but received minimal NCAP funds, suggesting possible oversight. High Funding, Limited Pollution Improvement:</p>
+<p>Chandigarh: NCAP funding = ₹17.89 crore, PM2.5 = 32.89 - 44.36 µg/m³ Srinagar (J&amp;K): NCAP funding = ₹12.95 crore, PM2.5 = 28.33 µg/m³ These cities received significant funding but already have relatively low PM2.5 levels, raising concerns about fund allocation efficiency.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/BhavyMishra\.github\.io\/J001-Exposition-Assignment\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
