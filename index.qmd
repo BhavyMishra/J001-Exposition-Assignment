@@ -1,5 +1,5 @@
 ---
-title: Python GeoViews
+title: GeoViews Exposition
 ---
 
 GeoViews is here!!

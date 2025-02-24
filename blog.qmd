@@ -1,5 +1,5 @@
 ---
-title: "GeoViews"
+title: "GeoViews Exposition"
 listing:
   contents: posts
   sort: "date desc"

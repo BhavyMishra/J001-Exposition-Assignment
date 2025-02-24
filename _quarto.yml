@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Python GeoViews"
+  title: "GeoViews Exposition"
   navbar:
     right:
       - href: index.qmd
