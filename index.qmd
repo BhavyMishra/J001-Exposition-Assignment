@@ -14,6 +14,6 @@ GeoViews makes it easy to create stunning, dynamic maps and spatial data visuali
 - Work efficiently with geospatial data
 
 Start exploring GeoViews today and bring your data to life with insightful visualizations!
-Check out my latest blog post on SymPy Stats:
+Check out my latest blog post on GeoViews:
 
 [Read the Blog](https://bhavymishra.github.io/J001-Exposition-Assignment/blog.html){.btn .btn-primary}
