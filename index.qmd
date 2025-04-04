@@ -16,4 +16,4 @@ GeoViews makes it easy to create stunning, dynamic maps and spatial data visuali
 Start exploring GeoViews today and bring your data to life with insightful visualizations!
 Check out my latest blog post on GeoViews:
 
-[Read the Blog](https://bhavymishra.github.io/J001-Exposition-Assignment/blog.html){.btn .btn-primary}
+[Read the Blog](https://bhavymishra.github.io/J001-Exposition-Assignment/posts/Exposition_Blog.html){.btn .btn-primary}
